@@ -58,9 +58,15 @@ class Progress extends ConsumerWidget {
         SizedBox(
           height: 5,
         ),
-        LinearProgressIndicator(
-          value: numCompletedTasks / tasks.length,
-        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 30,
+            right: 30,
+          ),
+          child: LinearProgressIndicator(
+            value: numCompletedTasks / tasks.length,
+          ),
+        )
       ],
     );
   }
@@ -71,13 +77,15 @@ class TaskList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var tasks = ref.watch(tasksProvider);
 
-    return Column(
-      children: tasks
-          .map(
-            (task) => TaskItem(task: task),
-          )
-          .toList(),
-    );
+    return Padding(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: tasks
+              .map(
+                (task) => TaskItem(task: task),
+              )
+              .toList(),
+        ));
   }
 }
 
